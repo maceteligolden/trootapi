@@ -1,0 +1,11 @@
+{
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+    "ecmaVersion": 2021
+    },
+    "rules": {
+        "no-var": "error",
+        "semi": "error",
+        "indent": ["error", 2, { "SwitchCase": 1 }]
+    }
+}
