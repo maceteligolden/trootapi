@@ -1,9 +1,11 @@
 import articleSchema from "./article.schema";
+import blogSchema from "./blog.schema";
 import categorySchema from "./category.schema";
 import UserSchema from "./user.schema";
 
 export {
     UserSchema,
     categorySchema,
-    articleSchema
+    articleSchema,
+    blogSchema
 }
