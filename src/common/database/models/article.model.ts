@@ -6,4 +6,5 @@ export interface Article extends Base {
     category?: string;
     key?: string;
     uploader?: string;
+    amount?: string;
 }

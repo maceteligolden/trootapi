@@ -6,3 +6,8 @@ export interface IAddBank {
     account_name: string;
     token?: string;
 }
+
+export interface IInitializePayment {
+    reference: string,
+    items: { price: string, quantity: number}[],
+}

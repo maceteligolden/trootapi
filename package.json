@@ -1,11 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "dev": "nodemon index.ts",
+    "start": "node dist/index.js",
     "test": "jest ./src --detectOpenHandles"
   },
   "repository": "https://github.com/musashiblack/trootfindr.git",
@@ -79,7 +80,7 @@
     "multer-s3": "2.9.0",
     "next-connect": "^1.0.0",
     "reflect-metadata": "^0.1.13",
-    "stripe": "^13.4.0",
+    "stripe": "^14.14.0",
     "supertest": "^6.3.3",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.8.1",
