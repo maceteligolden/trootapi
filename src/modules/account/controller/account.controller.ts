@@ -1,16 +1,18 @@
 import { injectable } from "tsyringe";
 import { Http } from "../../../common/utils";
-import { AddCategoryService, DeleteCategoryService, GetCategoryService } from "../services/admin";
+import { DeleteCategoryService, GetCategoryService } from "../services/admin";
 import { NextFunction, Response, Request } from "express";
-import { AddCategorySchema, DeleteCategorySchema, GetCategorySchema, UpdateCategorySchema } from "../validation";
+import { DeleteCategorySchema, GetCategorySchema, UpdateCategorySchema } from "../validation";
 import UpdateCategoryService from "../services/admin/updatecategory.service";
 import { CategoryTypes } from "../../../common/constants";
+import { AddAccountSchema } from "../validation/account.validation";
+import AddAccountService from "../services/admin/addaccount.service";
 
 @injectable()
-export default class CategoryController {
+export default class AccountController {
     constructor(
         private http: Http,
-        private addCategoryService: AddCategoryService,
+        private addAccountService: AddAccountService,
         private deleteCategoryService: DeleteCategoryService,
         private updateCategoryService: UpdateCategoryService,
         private getCategoryService: GetCategoryService
@@ -18,23 +20,17 @@ export default class CategoryController {
 
     }
 
-    async addCategory(req: Request, res: Response, next: NextFunction) {
+    async addAccount(req: Request, res: Response, next: NextFunction) {
         try {
-            AddCategorySchema.parse(req.body);
+            AddAccountSchema.parse(req.body);
 
-            const { name, description, type } = req.body;
-
-            const response = await this.addCategoryService.execute({
-                name,
-                description,
-                type
-            });
+            const response = await this.addAccountService.execute({...req.body});
 
             this.http.Response({
                 res,
                 status: "success",
                 statuscode: 200,
-                message: "successfully added category",
+                message: "successfully added account",
                 data: response
             });
         } catch (err: any){

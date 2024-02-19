@@ -1,4 +1,4 @@
-import CategoryController from "./category.controller";
+import CategoryController from "./account.controller";
 
 export {
     CategoryController

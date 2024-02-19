@@ -1,5 +1,5 @@
-import categoryRouter from "./category.route";
+import accountRouter from "./account.route";
 
 export {
-    categoryRouter
+    accountRouter
 }

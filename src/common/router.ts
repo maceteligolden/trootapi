@@ -5,6 +5,7 @@ import { categoryRouter } from "../modules/category/routes";
 import { articleRouter } from "../modules/article/routes";
 import adminBlogRouter from "../modules/blog/routes/admin-blog.route";
 import customerBlogRouter from "../modules/blog/routes/customer-blog.route";
+import { accountRouter } from "../modules/account/routes";
 
 export const router = Router({});
 router.get("/", async (_req, res, _next) => {
@@ -36,6 +37,7 @@ export default function moduleRouters(app: Application): void {
     app.use(`${ADMIN_BASE_URL}/category`, categoryRouter);
     app.use(`${ADMIN_BASE_URL}/article`, articleRouter);
     app.use(`${ADMIN_BASE_URL}/blogs`, adminBlogRouter);
+    app.use(`${ADMIN_BASE_URL}/accounts`, accountRouter);
 
     /** CUSTOMER ROUTES */
     app.use(`${BASE_URL}/blogs`, customerBlogRouter);
