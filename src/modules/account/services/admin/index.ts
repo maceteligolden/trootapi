@@ -1,9 +1,9 @@
-import AddCategoryService from "./addaccount.service";
-import DeleteCategoryService from "./deletecategory.service";
-import GetCategoryService from "./getcategory.service";
+import AddAccountService from "./addaccount.service";
+import DeleteAccountService from "./deleteaccount.service";
+import GetAccountsService from "./getaccounts.service";
 
 export {
-    AddCategoryService,
-    DeleteCategoryService,
-    GetCategoryService
+    AddAccountService,
+    DeleteAccountService,
+    GetAccountsService
 }

@@ -9,7 +9,7 @@ export const AddAccountSchema = z.object({
     type: z.enum([ CategoryTypes.ARTICLE, CategoryTypes.BLOG ]),
 });
 
-export const DeleteCategorySchema = z.object({
+export const DeleteAccountSchema = z.object({
     id: z.string({ required_error: "id is required"})
 });
 

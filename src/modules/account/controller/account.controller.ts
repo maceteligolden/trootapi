@@ -1,8 +1,8 @@
 import { injectable } from "tsyringe";
 import { Http } from "../../../common/utils";
-import { DeleteCategoryService, GetCategoryService } from "../services/admin";
+import { DeleteAccountService, GetAccountsService } from "../services/admin";
 import { NextFunction, Response, Request } from "express";
-import { DeleteCategorySchema, GetCategorySchema, UpdateCategorySchema } from "../validation";
+import { DeleteAccountSchema, GetCategorySchema, UpdateCategorySchema } from "../validation";
 import UpdateCategoryService from "../services/admin/updatecategory.service";
 import { CategoryTypes } from "../../../common/constants";
 import { AddAccountSchema } from "../validation/account.validation";
@@ -13,9 +13,9 @@ export default class AccountController {
     constructor(
         private http: Http,
         private addAccountService: AddAccountService,
-        private deleteCategoryService: DeleteCategoryService,
+        private deleteAccountService: DeleteAccountService,
         private updateCategoryService: UpdateCategoryService,
-        private getCategoryService: GetCategoryService
+        private getAccountService: GetAccountsService
     ){
 
     }
@@ -38,19 +38,19 @@ export default class AccountController {
         }
     }
 
-    async deleteCategory(req: Request, res: Response, next: NextFunction) {
+    async deleteAccount(req: Request, res: Response, next: NextFunction) {
         try {
-            DeleteCategorySchema.parse(req.params);
+            DeleteAccountSchema.parse(req.params);
 
             const { id } = req.params;
 
-            const response = await this.deleteCategoryService.execute(id);
+            const response = await this.deleteAccountService.execute(id);
 
             this.http.Response({
                 res,
                 status: "success",
                 statuscode: 200,
-                message: "successfully deleted category",
+                message: "successfully deleted account",
                 data: response
             });
         } catch (err: any){
@@ -83,19 +83,16 @@ export default class AccountController {
         }
     }
 
-    async getCategory(req: Request, res: Response, next: NextFunction) {
+    async getAccounts(req: Request, res: Response, next: NextFunction) {
         try {
-            GetCategorySchema.parse(req.params);
 
-            const { type }  = req.params;
-
-            const response = await this.getCategoryService.execute(type as CategoryTypes);
+            const response = await this.getAccountService.execute();
 
             this.http.Response({
                 res,
                 status: "success",
                 statuscode: 200,
-                message: "successfully get category",
+                message: "successfully get all accounts",
                 data: response
             });
         } catch (err: any){
