@@ -1,10 +1,9 @@
 import { injectable } from "tsyringe";
 import { Http } from "../../../common/utils";
-import { DeleteAccountService, GetAccountsService } from "../services/admin";
+import { DeleteAccountService, GetAccountService, GetAccountsService } from "../services/admin";
 import { NextFunction, Response, Request } from "express";
-import { DeleteAccountSchema, GetCategorySchema, UpdateCategorySchema } from "../validation";
+import { DeleteAccountSchema, UpdateCategorySchema } from "../validation";
 import UpdateCategoryService from "../services/admin/updatecategory.service";
-import { CategoryTypes } from "../../../common/constants";
 import { AddAccountSchema } from "../validation/account.validation";
 import AddAccountService from "../services/admin/addaccount.service";
 
@@ -15,7 +14,8 @@ export default class AccountController {
         private addAccountService: AddAccountService,
         private deleteAccountService: DeleteAccountService,
         private updateCategoryService: UpdateCategoryService,
-        private getAccountService: GetAccountsService
+        private getAccountsService: GetAccountsService,
+        private getAccountService: GetAccountService
     ){
 
     }
@@ -86,13 +86,32 @@ export default class AccountController {
     async getAccounts(req: Request, res: Response, next: NextFunction) {
         try {
 
-            const response = await this.getAccountService.execute();
+            const response = await this.getAccountsService.execute();
 
             this.http.Response({
                 res,
                 status: "success",
                 statuscode: 200,
                 message: "successfully get all accounts",
+                data: response
+            });
+        } catch (err: any){
+            next(err)
+        }
+    }
+
+    async getAccount(req: Request, res: Response, next: NextFunction) {
+        try {
+
+            const { id } = req.params;
+
+            const response = await this.getAccountService.execute(id);
+
+            this.http.Response({
+                res,
+                status: "success",
+                statuscode: 200,
+                message: "successfully get account",
                 data: response
             });
         } catch (err: any){
