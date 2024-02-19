@@ -14,7 +14,7 @@ export default class AddCategoryService {
     async execute(args: Category): Promise<Category> {
 
         const category = await this.categoryRepository.findCategoryByName(args.name ? args.name : "");
-
+        
         if(category.length > 0){
             throw new BadRequestError("category name already exists")
         }

@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { Article } from "../models";
-import { CategoryTypes } from "../../constants";
+import { CategoryTypes, PaymentModel } from "../../constants";
 
 const articleschema: Schema =   new Schema<Article>({
     title: {
@@ -8,6 +8,15 @@ const articleschema: Schema =   new Schema<Article>({
         required: true
     },
     description: {
+        type: String,
+        required: true
+    },
+    payment_model: {
+        type: String,
+        enum: [ PaymentModel.FREE, PaymentModel.PREMIUM],
+        required: true
+    },
+    thumbnail: {
         type: String,
         required: true
     },

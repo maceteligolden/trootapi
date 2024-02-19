@@ -20,7 +20,7 @@ export default class BlogRepository {
     }
 
     async getBlogs(): Promise<Blog[]>{
-        return await readData(blogSchema, {});
+        return await readData(blogSchema, {}).populate(["category"]);
     }
 
     async updateBlogById(id: string, payload: any): Promise<Blog> {

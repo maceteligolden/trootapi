@@ -10,18 +10,10 @@ export const errorMiddleware = (err: Error, req: Request, res: Response, next: N
 
     logger.info(`${err.message}`);
     if (err instanceof CustomError) {
-        http.Response({
-            res,
-            statuscode: err.statusCode,
-            status: "error",
-            error : err.serializeErrors()
-        })
+        return res.status(err.statusCode).json({ errors: err.serializeErrors() });
     }
     
-    http.Response({
-        res,
-        statuscode: 500,
-        status: "error",
-        error: [{message: err.message}]
-    })
+    res.status(500).send({
+        errors: [{ message: err.message }]
+    });
 };

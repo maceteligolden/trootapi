@@ -9,7 +9,7 @@ const SECRET_KEY = `${env.JWT_SECRET}`|| "";
 export default async function authMiddleware(req: Request, res: Response, next: NextFunction) {
     try {
         const authHeader: string | undefined = req.headers.authorization ;
-      
+        console.log("auth token: "+ authHeader);
         if(!authHeader || !authHeader.split(" ")[1]){
             throw new BadRequestError("user not authorized");
         }

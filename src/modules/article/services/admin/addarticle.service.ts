@@ -14,7 +14,7 @@ export default class AddArticleService {
     async execute(args: IAddArticleInput): Promise<void> {
       
             const { files, title, description, category, uploader } = args;
-          
+            console.log("files:" + JSON.stringify(files));
             ( files as unknown as Array<{ [fieldname: string]: File[]; } | File[] | undefined > ).map(async (file: any)=>{
                 await this.articleRepository.add({
                     title,

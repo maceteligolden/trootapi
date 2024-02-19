@@ -14,6 +14,10 @@ export default class UserRepository {
         return User;
     }
 
+    async findUserByEmail(email: string): Promise<User> {
+        return await readsingleData(UserSchema, { email });
+    }
+
     async getUsers(payload: Partial<User>): Promise<User[]>{
         const Users = await readData(UserSchema, payload);
         return Users;
