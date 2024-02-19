@@ -1,9 +1,8 @@
 import { injectable } from "tsyringe";
 import { Http } from "../../../common/utils";
-import { DeleteAccountService, GetAccountService, GetAccountsService } from "../services/admin";
+import { DeleteAccountService, GetAccountService, GetAccountsService, UpdateAccountService } from "../services/admin";
 import { NextFunction, Response, Request } from "express";
 import { DeleteAccountSchema, UpdateCategorySchema } from "../validation";
-import UpdateCategoryService from "../services/admin/updatecategory.service";
 import { AddAccountSchema } from "../validation/account.validation";
 import AddAccountService from "../services/admin/addaccount.service";
 
@@ -13,7 +12,7 @@ export default class AccountController {
         private http: Http,
         private addAccountService: AddAccountService,
         private deleteAccountService: DeleteAccountService,
-        private updateCategoryService: UpdateCategoryService,
+        private updateAccountService: UpdateAccountService,
         private getAccountsService: GetAccountsService,
         private getAccountService: GetAccountService
     ){
@@ -58,24 +57,20 @@ export default class AccountController {
         }
     }
 
-    async updateCategory(req: Request, res: Response, next: NextFunction) {
+    async updateAccount(req: Request, res: Response, next: NextFunction) {
         try {
-            UpdateCategorySchema.parse(req.body);
 
             const { id } = req.params;
 
-            const { name, description } = req.body;
-
-            const response = await this.updateCategoryService.execute(id, {
-                name,
-                description
+            const response = await this.updateAccountService.execute(id, {
+               ...req.body
             });
 
             this.http.Response({
                 res,
                 status: "success",
                 statuscode: 200,
-                message: "successfully updated category",
+                message: "successfully updated account",
                 data: response
             });
         } catch (err: any){

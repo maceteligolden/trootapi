@@ -10,5 +10,6 @@ accountRouter.post("/create", (req: Request, res: Response, next: NextFunction)=
 accountRouter.delete("/:id", (req: Request, res: Response, next: NextFunction)=> accountController.deleteAccount(req, res, next));
 accountRouter.get("/", (req: Request, res: Response, next: NextFunction)=> accountController.getAccounts(req, res, next));
 accountRouter.get("/:id", (req: Request, res: Response, next: NextFunction)=> accountController.getAccount(req, res, next));
+accountRouter.patch("/:id", (req: Request, res: Response, next: NextFunction)=> accountController.updateAccount(req, res, next));
 
 export default accountRouter;    
