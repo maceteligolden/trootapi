@@ -10,7 +10,7 @@ export default class GetOrderService {
 
     }
 
-    async execute(orderId: string): Promise<Order> {
+    async execute(orderId: string): Promise<any> {
         
     }
 }

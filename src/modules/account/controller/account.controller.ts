@@ -2,7 +2,7 @@ import { injectable } from "tsyringe";
 import { Http } from "../../../common/utils";
 import { DeleteAccountService, GetAccountService, GetAccountsService, UpdateAccountService } from "../services/admin";
 import { NextFunction, Response, Request } from "express";
-import { DeleteAccountSchema, UpdateCategorySchema } from "../validation";
+import { DeleteAccountSchema } from "../validation";
 import { AddAccountSchema } from "../validation/account.validation";
 import AddAccountService from "../services/admin/addaccount.service";
 
