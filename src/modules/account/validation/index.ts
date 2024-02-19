@@ -1,4 +1,4 @@
-import { AddCategorySchema, DeleteCategorySchema, GetCategorySchema, UpdateCategorySchema } from "./category.validation";
+import { AddCategorySchema, DeleteCategorySchema, GetCategorySchema, UpdateCategorySchema } from "./account.validation";
 
 export {
     AddCategorySchema,
