@@ -12,12 +12,3 @@ export const AddAccountSchema = z.object({
 export const DeleteAccountSchema = z.object({
     id: z.string({ required_error: "id is required"})
 });
-
-export const UpdateCategorySchema = z.object({
-    name: z.string().optional(),
-    description: z.string().optional()
-});
-
-export const GetCategorySchema = z.object({
-    type: z.enum([ CategoryTypes.ARTICLE, CategoryTypes.BLOG ]),
-});
