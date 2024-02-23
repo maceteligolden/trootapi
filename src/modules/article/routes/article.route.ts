@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { NextFunction, Request, Response, Router } from "express";
 import { container } from "tsyringe";
 import { ArticleController } from "../controller";
-import { fileMiddleware } from "../../../common/middlewares";
+import { authMiddleware, fileMiddleware } from "../../../common/middlewares";
 
 const articleRouter = Router();
 const articleController = container.resolve(ArticleController);

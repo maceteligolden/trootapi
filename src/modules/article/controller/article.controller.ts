@@ -19,11 +19,10 @@ export default class ArticleController {
     }
 
     async addArticle(req: Request, res: Response, next: NextFunction){
-        try{
-            addArticleSchema.parse(req.body);
-
+        try{ 
+            // addArticleSchema.parse(req.body);
+            console.log(req)
             const { files } = req;
-            
 
             const response = await this.addArticleService.execute({
                 ...req.body,

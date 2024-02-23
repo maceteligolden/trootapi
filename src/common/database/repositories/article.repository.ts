@@ -22,7 +22,7 @@ export default class ArticleRepository {
     }
 
     async getAll(): Promise<Article[]>{
-        return await readData(articleSchema, {});
+        return await readData(articleSchema, {}).populate(["category"])
     }
 
     async getOneById(id: string): Promise<Article> {

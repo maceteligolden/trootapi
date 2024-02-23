@@ -7,6 +7,9 @@ const articleschema: Schema =   new Schema<Article>({
         type: String,
         required: true
     },
+    amount: {
+        type: String
+    },
     description: {
         type: String,
         required: true
@@ -26,13 +29,12 @@ const articleschema: Schema =   new Schema<Article>({
     },
     category: {
         type: Schema.Types.ObjectId,
-        ref: 'category',
+        ref: 'Category',
         required: true
     },
     uploader: {
         type: Schema.Types.ObjectId,
-        ref: 'user',
-        required: true
+        ref: 'user'
     },
     created_at: {
         type: Date,

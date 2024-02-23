@@ -13,17 +13,18 @@ export default class AddArticleService {
 
     async execute(args: IAddArticleInput): Promise<void> {
       
-            const { files, title, description, category, uploader, payment_model} = args;
-
-            await this.articleRepository.add({
-                title,
-                description,
-                category,
-                uploader,
-                payment_model: payment_model as PaymentModel,
-                key: files.article[0].key,
-                thumbnail: files.thumbnail[0].key
-            });
+        const {files, title, description, category, uploader, payment_model, amount} = args;
+     
+        await this.articleRepository.add({
+            title,
+            description,
+            category,
+            uploader,
+            payment_model: payment_model as PaymentModel,
+            key: files.article[0].key,
+            amount: amount ? amount : "0",
+            thumbnail: files.thumbnail[0].key
+        });
         
     }
 }
