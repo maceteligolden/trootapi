@@ -33,6 +33,7 @@ export default class ArticleController {
             this.httpService.Response({
                 res,
                 status: "success",
+                statuscode: 200,
                 message: "successfully added article",
                 data: response
             });
@@ -57,6 +58,7 @@ export default class ArticleController {
             this.httpService.Response({
                 res,
                 status: "success",
+                statuscode: 200,
                 message: "successfully update article",
                 data: response
             });
@@ -76,6 +78,7 @@ export default class ArticleController {
             this.httpService.Response({
                 res,
                 status: "success",
+                statuscode: 200,
                 message: "successfully delete article"
             });
         }catch(err: any){
@@ -94,6 +97,7 @@ export default class ArticleController {
             this.httpService.Response({
                 res,
                 status: "success",
+                statuscode: 200,
                 message: "successfully get article",
                 data: response
             });
@@ -110,6 +114,7 @@ export default class ArticleController {
             this.httpService.Response({
                 res,
                 status: "success",
+                statuscode: 200,
                 message: "successfully get articles",
                 data: response
             });
