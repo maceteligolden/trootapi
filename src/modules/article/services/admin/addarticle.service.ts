@@ -1,7 +1,7 @@
 import { injectable } from "tsyringe";
 import { IAddArticleInput } from "../../interface";
 import { ArticleRepository } from "../../../../common/database/repositories";
-import { Article } from "../../../../common/database/models";
+import { PaymentModel } from "../../../../common/constants";
 
 @injectable() 
 export default class AddArticleService {
@@ -13,16 +13,16 @@ export default class AddArticleService {
 
     async execute(args: IAddArticleInput): Promise<void> {
       
-            const { files, title, description, category, uploader } = args;
-            console.log("files:" + JSON.stringify(files));
-            ( files as unknown as Array<{ [fieldname: string]: File[]; } | File[] | undefined > ).map(async (file: any)=>{
-                await this.articleRepository.add({
-                    title,
-                    description,
-                    category,
-                    uploader,
-                    key: file.key
-                })
+            const { files, title, description, category, uploader, payment_model} = args;
+
+            await this.articleRepository.add({
+                title,
+                description,
+                category,
+                uploader,
+                payment_model: payment_model as PaymentModel,
+                key: files.article[0].key,
+                thumbnail: files.thumbnail[0].key
             });
         
     }
