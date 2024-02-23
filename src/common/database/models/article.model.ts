@@ -10,4 +10,5 @@ export interface Article extends Base {
     key?: string;
     uploader?: string;
     amount?: string;
+    
 }

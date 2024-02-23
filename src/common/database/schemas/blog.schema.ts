@@ -6,6 +6,9 @@ const blogschema: Schema = new Schema<Blog>({
         type: String,
         required: true
     },
+    thumbnail: {
+        type: String
+    },
     content: {
         type: String,
         required: true

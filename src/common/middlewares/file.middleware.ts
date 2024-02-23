@@ -5,10 +5,10 @@ const multerS3 = require("multer-s3");
 const aws = require("aws-sdk");
 
 const s3 = new aws.S3({
-    accessKeyId: process.env.ACCESSKEYID || "",
-    secretAccessKey: process.env.SECRETACCESSKEY || "",
-    Bucket: `${env.AWS.S3.ASSETS}`,
-    region: "us-east-2"
+    accessKeyId: process.env.AWS_ACCESS_KEY || "",
+    secretAccessKey: process.env.AWS_SECRET_KEY || "",
+    Bucket: `${process.env.AWS_STORAGE}`,
+    region: `${process.env.AWS_STORAGE_REGION}`
 });
 
 const local_storage = multer.diskStorage({
@@ -23,7 +23,7 @@ const local_storage = multer.diskStorage({
 
 const s3_storage = multerS3({
     s3: s3,
-    bucket:`${env.AWS.S3.ASSETS}`,
+    bucket:`${process.env.AWS_STORAGE}`,
     metadata: function (req: any, file: any, cb: any) {
         cb(null, { fieldName: file.fieldname });
     },
