@@ -7,7 +7,7 @@ export interface Transaction extends Base {
     customer_email?: string;
     customer_firstname?: string;
     customer_lastname?: string;
-    customer_address?: string;
+    customer_phone?: string;
     articles?: Article[];
     amount?: string;
     payment_provider?: string;

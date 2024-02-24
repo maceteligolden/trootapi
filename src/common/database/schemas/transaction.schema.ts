@@ -50,7 +50,7 @@ const transactionschema: Schema =   new Schema<Transaction>({
         type: String,
         required: true
     },
-    customer_address: {
+    customer_phone: {
         type: String,
         required: true
     },

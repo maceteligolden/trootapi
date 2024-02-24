@@ -14,7 +14,7 @@ export default class AddArticleService {
     async execute(args: IAddArticleInput): Promise<void> {
       
         const {files, title, description, category, uploader, payment_model, amount} = args;
-     
+        console.log("description: "+ description)
         await this.articleRepository.add({
             title,
             description,
