@@ -1,5 +1,5 @@
 import { injectable } from "tsyringe";
-import { createData, readData } from "../../utils";
+import { createData, readData, updateData } from "../../utils";
 import { transactionSchema } from "../schemas";
 import { Transaction } from "../models";
 
@@ -13,5 +13,9 @@ export default class TransactionRepository {
     
     async getTransactions(): Promise<Transaction[]> {
         return await readData(transactionSchema, {});
+    }
+
+    async updateTransactionByRef(ref: string, payload: any): Promise<Transaction> {
+        return await updateData(transactionSchema, {reference_no: ref}, payload);
     }
 }

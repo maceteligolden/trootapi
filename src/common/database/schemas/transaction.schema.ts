@@ -23,7 +23,7 @@ const transactionschema: Schema =   new Schema<Transaction>({
     ],
     status: {
         type: String,
-        enum: [TransactionStatus.FAILED, TransactionStatus.INITIALIZED, TransactionStatus.SUCCESSFUL],
+        enum: [TransactionStatus.FAILED, TransactionStatus.INITIALIZED, TransactionStatus.SUCCESSFUL, TransactionStatus.EXPIRED],
         default: TransactionStatus.INITIALIZED,
         required: true
     },

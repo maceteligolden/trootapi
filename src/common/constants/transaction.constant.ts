@@ -5,7 +5,8 @@ export enum PaymentProviders {
 export enum TransactionStatus {
     INITIALIZED = "INITIALIZED",
     SUCCESSFUL = "SUCCESSFUL",
-    FAILED = "FAILED"
+    FAILED = "FAILED",
+    EXPIRED = "EXPIRED"
 }
 
 export enum TransactionType {

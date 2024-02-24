@@ -2,6 +2,7 @@ import { injectable } from "tsyringe";
 import { Article } from "../../../common/database/models";
 import { TransactionRepository } from "../../../common/database/repositories";
 import { TransactionType } from "../../../common/constants/transaction.constant";
+import { generateReference } from "../../../common/utils/reference-generator.util";
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 interface IPlaceOrderInput {
@@ -41,17 +42,11 @@ export default class PlaceOrderService {
             transactionTotal = transactionTotal + Number(item.amount)
         })
 
-        // create order session
-        const session = await stripe.checkout.sessions.create({
-            line_items: lineItems,
-            mode: 'payment',
-            success_url: 'https://example.com/success',
-            cancel_url: 'https://example.com/cancel',
-          });
-
         // add transaction table
+        const generatedRef = generateReference("TRT"); 
+
         await this.transactionRepository.createTransaction({
-            reference_no: "",
+            reference_no: generatedRef,
             amount: transactionTotal.toString(),
             articles: args.items,
             transaction_type: TransactionType.PURCHASE,
@@ -59,7 +54,18 @@ export default class PlaceOrderService {
             customer_firstname: args.firstname,
             customer_lastname: args.lastname,
             customer_phone: args.phone
-        })
+        });
+
+        // create order session
+        const session = await stripe.checkout.sessions.create({
+            line_items: lineItems,
+            mode: 'payment',
+            success_url: 'https://example.com/success',
+            cancel_url: 'https://example.com/cancel',
+            metadata: {
+                reference: generatedRef
+            }
+        });
 
         return session;
     }
