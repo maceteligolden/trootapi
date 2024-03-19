@@ -30,6 +30,6 @@ export default class ArticleRepository {
     }
 
     async getOneById(id: string): Promise<Article> {
-        return await readsingleData(articleSchema, {_id: id});
+        return await readsingleData(articleSchema, {_id: id}).populate(["category"]);
     }
 }
