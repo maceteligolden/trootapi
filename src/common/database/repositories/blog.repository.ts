@@ -16,7 +16,7 @@ export default class BlogRepository {
     }
 
     async getBlogById(id: string): Promise<Blog>{
-        return await readsingleData(blogSchema, {_id: id})
+        return await readsingleData(blogSchema, {_id: id}).populate(["category"]);
     }
 
     async getBlogs(): Promise<Blog[]>{
