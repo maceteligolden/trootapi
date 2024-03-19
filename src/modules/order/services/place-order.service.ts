@@ -57,6 +57,7 @@ export default class PlaceOrderService {
         });
 
         // create order session
+        //TODO:update success and cancel page to actual pages
         const session = await stripe.checkout.sessions.create({
             line_items: lineItems,
             mode: 'payment',

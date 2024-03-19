@@ -25,6 +25,10 @@ export default class ArticleRepository {
         return await readData(articleSchema, {}).populate(["category"])
     }
 
+    async getAllByCategory(category: string): Promise<Article[]>{
+        return await readData(articleSchema, {category}).populate(["category"])
+    }
+
     async getOneById(id: string): Promise<Article> {
         return await readsingleData(articleSchema, {_id: id});
     }

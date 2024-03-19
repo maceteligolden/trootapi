@@ -13,4 +13,4 @@ articleRouter.delete("/:id", (req: Request, res: Response, next: NextFunction)=>
 articleRouter.get("/:id", (req: Request, res: Response, next: NextFunction)=>articleController.getArticle(req, res, next));
 articleRouter.get("/", (req: Request, res: Response, next: NextFunction)=>articleController.getArticles(req, res, next));
 
-export default articleRouter;            
+export default articleRouter;    

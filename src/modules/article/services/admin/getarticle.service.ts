@@ -10,7 +10,14 @@ export default class GetArticleService {
 
     }
 
-    async execute(id: string): Promise<Article>{
-        return await this.articleRepository.getOneById(id);
+    async execute(id: string): Promise<{article: Article, related_articles: Article[]}>{
+        const article = await this.articleRepository.getOneById(id);
+
+        const related_articles = await this.articleRepository.getAllByCategory(article.category!)
+
+        return {
+            article,
+            related_articles
+        }
     }
 }
