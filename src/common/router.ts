@@ -43,4 +43,5 @@ export default function moduleRouters(app: Application): void {
 
     /** CUSTOMER ROUTES */
     app.use(`${BASE_URL}/blogs`, customerBlogRouter);
+    app.use(`${BASE_URL}/orders`, orderRouter);
 }
