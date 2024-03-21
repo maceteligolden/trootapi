@@ -3,7 +3,7 @@ import { Article } from "../../../common/database/models";
 import { TransactionRepository } from "../../../common/database/repositories";
 import { TransactionType } from "../../../common/constants/transaction.constant";
 import { generateReference } from "../../../common/utils/reference-generator.util";
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')(`${process.env.STRIPE_API_KEY}`);
 
 export interface IPlaceOrderInput {
     items: Article[],
