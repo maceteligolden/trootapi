@@ -57,12 +57,11 @@ export default class PlaceOrderService {
         });
 
         // create order session
-        //TODO:update success and cancel page to actual pages
         const session = await stripe.checkout.sessions.create({
             line_items: lineItems,
             mode: 'payment',
-            success_url: 'https://example.com/success',
-            cancel_url: 'https://example.com/cancel',
+            success_url: `${process.env.STRIPE_SUCCESS_URL}`,
+            cancel_url: `${process.env.STRIPE_CANCEL_URL}`,
             metadata: {
                 reference: generatedRef
             }
