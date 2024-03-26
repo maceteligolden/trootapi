@@ -1,6 +1,6 @@
 import { injectable } from "tsyringe";
-import { Article } from "../../../../common/database/models";
-import { ArticleRepository } from "../../../../common/database/repositories";
+import { ArticleRepository } from "../../../common/database/repositories";
+import { Article } from "../../../common/database/models/article.model";
 
 @injectable()
 export default class GetArticleService {
