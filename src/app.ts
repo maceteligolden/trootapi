@@ -6,6 +6,8 @@ import { errorMiddleware } from "./common/middlewares";
 import { TransactionRepository } from "./common/database/repositories";
 import { container } from "tsyringe";
 import { TransactionStatus } from "./common/constants/transaction.constant";
+import EmailService, { FileDetail } from "./common/services/email.service";
+import { Article } from "./common/database/models";
 const stripe = require('stripe')(`${process.env.STRIPE_API_KEY}`);
 
 const app: Application = express();
@@ -30,7 +32,7 @@ app.use(errorMiddleware);
 app.post("/webhook", express.raw({type: "application/json"}), 
 async (request, response) => {
 
-    const endpointSecret = `whsec_Jx8DMoPVuWXGKYU5IwUYAtEDbyLkzjys`;
+    const endpointSecret = `${process.env.STRIPE_WEBHOOK_SECRET}`;
 
     const sig = request.headers["stripe-signature"];
 
@@ -46,15 +48,29 @@ async (request, response) => {
     }
 
     const transactionRepository = container.resolve(TransactionRepository);
+    const emailService = container.resolve(EmailService);
 
     switch (event.type) {
         case "checkout.session.completed":
             const payload = event.data.object;
-            await transactionRepository.updateTransactionByRef(payload.metadata.reference, {
+            const transaction = await transactionRepository.updateTransactionByRef(payload.metadata.reference, {
                 status: TransactionStatus.SUCCESSFUL
             });
 
-            //TODO: send email to download file
+            let files: FileDetail[] = [];
+
+            transaction.articles?.map((article: Article)=> {
+                files.push({
+                    name: article.title!,
+                    key: article.key!
+                })
+            });
+
+            await emailService.sendEmail(
+                {
+                    name: transaction.customer_firstname!,
+                    email: transaction.customer_email!
+                },  files);
         break;
             
         case "checkout.session.expired":
