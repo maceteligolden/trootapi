@@ -15,6 +15,10 @@ export default class TransactionRepository {
         return await readData(transactionSchema, {});
     }
 
+    async getTransactionByRef(reference_no: string): Promise<Transaction> {
+        return await readData(transactionSchema, {reference_no});
+    }
+
     async updateTransactionByRef(ref: string, payload: any): Promise<Transaction> {
         return await updateData(transactionSchema, {reference_no: ref}, payload);
     }
