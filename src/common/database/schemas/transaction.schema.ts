@@ -35,24 +35,20 @@ const transactionschema: Schema =   new Schema<Transaction>({
     },
     transaction_type: {
         type: String,
-        enum: [TransactionType.PURCHASE, TransactionType.REFUND],
+        enum: [TransactionType.PURCHASE, TransactionType.REFUND, TransactionType.FREEDOWNLOAD],
         required: true
     },
     customer_email: {
         type: String,
-        required: true
     },
     customer_firstname: {
         type: String,
-        required: true
     },
     customer_lastname: {
         type: String,
-        required: true
     },
     customer_phone: {
         type: String,
-        required: true
     },
     created_at: {
         type: Date,
