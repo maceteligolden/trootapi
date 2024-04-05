@@ -35,7 +35,7 @@ export default class EmailService {
                 name: receiver.name
             },
             subject: 'Successfully purchased an article',
-            html: `<div><h1>Congratulations on your purchase</h1> <br/> <h4>Files</h4> <br/> <ul>${fileList}</ul></div>`
+            html: `<div><h1>Congratulations on your purchase</h1> <h4>Files</h4> <ul>${fileList}</ul></div>`
         };
           
         sendgrid

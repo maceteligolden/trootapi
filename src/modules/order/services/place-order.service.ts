@@ -16,7 +16,7 @@ export interface IPlaceOrderInput {
 @injectable()
 export default class PlaceOrderService {
     constructor(
-        private transactionRepository: TransactionRepository
+        private transactionRepository: TransactionRepository,
     ){
 
     }

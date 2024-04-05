@@ -20,8 +20,8 @@ export default class BlogController {
         try {
 
             //TODO: add validation 
-
-            const response = await this.createBlogService.execute(req.body);
+            console.log(req)
+            const response = await this.createBlogService.execute({...req.body, content: req.body.description});
 
             this.http.Response({
                 res,

@@ -24,6 +24,7 @@ const local_storage = multer.diskStorage({
 const s3_storage = multerS3({
     s3: s3,
     bucket:`${process.env.AWS_STORAGE}`,
+    contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function (req: any, file: any, cb: any) {
         cb(null, { fieldName: file.fieldname });
     },
