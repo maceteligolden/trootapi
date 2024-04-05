@@ -3,13 +3,15 @@ import { injectable } from "tsyringe";
 import { Http } from "../../../common/utils";
 import GetOrdersService from "../services/admin/get-orders.service";
 import PlaceOrderService, { IPlaceOrderInput } from "../services/place-order.service";
+import FreedownloadService from "../services/freedownload.service";
 
 @injectable()
 export default class OrderController {
     constructor(
         private httpService: Http,
         private getOrdersService: GetOrdersService,
-        private placeOrderService: PlaceOrderService
+        private placeOrderService: PlaceOrderService,
+        private freedownloadService: FreedownloadService
     ){
 
     }
@@ -52,6 +54,24 @@ export default class OrderController {
                 statuscode: 200,
                 message: "successfully placed orders",
                 data: response
+            });
+        } catch(err){
+            next(err)
+        }
+    }
+
+    async freeDownload(req: Request, res: Response, next: NextFunction){
+        try {
+
+            const { articleId } = req.body;
+
+            await this.freedownloadService.execute(articleId);
+           
+            this.httpService.Response({
+                res,
+                status: "success",
+                statuscode: 200,
+                message: "successfully downloaded article"
             });
         } catch(err){
             next(err)
