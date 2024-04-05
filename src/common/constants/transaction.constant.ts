@@ -10,6 +10,7 @@ export enum TransactionStatus {
 }
 
 export enum TransactionType {
+    FREEDOWNLOAD = "FREEDOWNLOAD",
     PURCHASE = "PURCHASE",
     REFUND = "REFUND"
 }
