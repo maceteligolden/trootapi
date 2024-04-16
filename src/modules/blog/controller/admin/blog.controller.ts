@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { injectable } from "tsyringe";
 import { Http } from "../../../../common/utils";
 import { CreateBlogService, GetBlogService, GetBlogsService, DeleteBlogService, UpdateBlogService } from "../../services";
+import { UploadedFile } from "express-fileupload";
 
 @injectable()
 export default class BlogController {
@@ -21,7 +22,9 @@ export default class BlogController {
 
             //TODO: add validation 
             console.log(req)
-            const response = await this.createBlogService.execute({...req.body, content: req.body.description});
+
+            const files: UploadedFile[] | any = req.files;
+            const response = await this.createBlogService.execute({...req.body, thumbnail: files.thumbnail[0].key});
 
             this.http.Response({
                 res,
