@@ -49,7 +49,7 @@ export default class ArticleController {
             const { id } = req.params;
             
 
-            const response = await this.updateArticleService.execute(id, {
+            await this.updateArticleService.execute(id, {
                 ...req.body,
                 files
             });
@@ -58,8 +58,7 @@ export default class ArticleController {
                 res,
                 status: "success",
                 statuscode: 200,
-                message: "successfully update article",
-                data: response
+                message: "successfully update article"
             });
         }catch(err: any){
             next(err);
