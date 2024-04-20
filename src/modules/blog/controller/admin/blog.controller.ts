@@ -100,9 +100,9 @@ export default class BlogController {
             //TODO: add validation
 
             const { id } = req.params;
+            const files: UploadedFile[] | any = req.files;
 
-
-            const response = await this.updateBlogService.execute(id, req.body);
+            const response = await this.updateBlogService.execute(id, {...req.body, thumbnail: files.thumbnail[0].key});
 
             this.http.Response({
                 res,
