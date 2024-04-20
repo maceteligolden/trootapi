@@ -1,5 +1,6 @@
 import { PaymentModel } from "../../constants";
 import { Base } from "./base.model";
+import { Tag } from "./tag.model";
 
 export interface Article extends Base {
     title?: string;
@@ -10,5 +11,5 @@ export interface Article extends Base {
     key?: string;
     uploader?: string;
     amount?: string;
-    
+    tags?: Tag[]
 }
