@@ -1,4 +1,5 @@
 import { PaymentModel } from "../../../common/constants";
+import { Tag } from "../../../common/database/models";
 
 export interface IAddArticleInput {
     title: string;
@@ -8,4 +9,5 @@ export interface IAddArticleInput {
     uploader: string;
     payment_model: PaymentModel;
     files: any;
+    tags: string;
 }
