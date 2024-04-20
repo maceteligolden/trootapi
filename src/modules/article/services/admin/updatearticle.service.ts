@@ -10,17 +10,16 @@ export default class UpdateArticleService {
 
     }
 
-    async execute(id: string, payload: Partial<IAddArticleInput>): Promise<void>{
-        const { files, title, description, category, uploader } = payload;
+    async execute(articleId: string, payload: Partial<IAddArticleInput>): Promise<void>{
+        const { files, title, description, category, amount } = payload;
           
-        ( files as unknown as Array<{ [fieldname: string]: File[]; } | File[] | undefined > ).map(async (file: any)=>{
-            await this.articleRepository.update(id, {
+            await this.articleRepository.update(articleId, {
                 title,
                 description,
                 category,
-                uploader,
-                key: file.key
-            })
-        });
+                key: files.article[0].key,
+                amount: amount ? amount : "0",
+                thumbnail: files.thumbnail[0].key
+            });
     }
 }
