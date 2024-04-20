@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Article } from "../models";
+import { Article, Tag } from "../models";
 import { CategoryTypes, PaymentModel } from "../../constants";
 
 const articleschema: Schema =   new Schema<Article>({
@@ -36,6 +36,9 @@ const articleschema: Schema =   new Schema<Article>({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
+    tags: [new Schema<Tag>({
+        name: String
+    })],
     created_at: {
         type: Date,
         default: function(){
